@@ -17,7 +17,7 @@ namespace QEngine.System
 
 		public Dictionary<string, Rectangle> Rectangles { get; internal set; }
 
-		public static QMega2D Compile(QRenderer2D render, Dictionary<string, Texture2D> textures)
+		public static QMega2D Compile(QRenderer2D render, Dictionary<string, Texture2D> textures, bool saveMegaToDisk = false)
 		{
 			var width = 0;
 			var height = 0;
@@ -52,8 +52,11 @@ namespace QEngine.System
 
 			render.Device.SetRenderTarget(null);
 
-			QScene.SaveTextureAsPng(target);
-			Task.Delay(1000);
+			if(saveMegaToDisk)
+			{
+				QScene.SaveTextureAsPng(target);
+				Task.Delay(1000);
+			}
 
 			return new QMega2D(target, rects);
 		}
