@@ -11,14 +11,14 @@ namespace QEngine.System
 
 		public static QNode GetNode()
 		{
-			if(Pool.Count > 0)
-			{
-				Console.WriteLine("pop");
-				return Pool.Pop();
-			}
-			Console.WriteLine("new");
-			return new QNode("QNode", "Default", _totalNodes++);
-			//return Pool.Count > 0 ? Pool.Pop() : new QNode("QNode", "Default", _totalNodes++);
+//			if(Pool.Count > 0)
+//			{
+//				Console.WriteLine("pop");
+//				return Pool.Pop();
+//			}
+//			Console.WriteLine("new");
+//			return new QNode("QNode", "Default", _totalNodes++);
+			return Pool.Count > 0 ? Pool.Pop() : new QNode("QNode", "Default", _totalNodes++);
 		}
 
 		public static void FreeNode(QNode node)

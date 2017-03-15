@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F603E25C-DD3F-4030-AE87-8389F38F393C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>QEngine</RootNamespace>
     <AssemblyName>QEngine</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
