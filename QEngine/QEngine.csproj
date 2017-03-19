@@ -89,7 +89,7 @@
     <Compile Include="System\QSaves.cs" />
     <Compile Include="System\QScene.cs" />
     <Compile Include="System\QSprite.cs" />
-    <Compile Include="Prefabs\QText.cs" />
+    <Compile Include="Prefabs\QLabel.cs" />
     <Compile Include="System\QTime.cs" />
     <Compile Include="System\QTransform.cs" />
     <Compile Include="System\QWindow.cs" />

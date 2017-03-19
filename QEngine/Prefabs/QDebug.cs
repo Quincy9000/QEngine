@@ -24,11 +24,11 @@ namespace QEngine.Prefabs
 			fps = new QFrameCounter();
 		}
 
-		public void Update(QTime time)
+		public void Update(float delta)
 		{
 			if(QControls.KeyDown(Keys.F12))
 				IsDebugMode = !IsDebugMode;
-			fps.Update(time.Delta);
+			fps.Update(delta);
 			if(IsDebugMode)
 				Console.WriteLine(Fps);
 		}

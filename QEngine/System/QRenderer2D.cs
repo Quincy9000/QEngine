@@ -99,14 +99,14 @@ namespace QEngine.System
 				_batch.Draw(MegaTexture.Texture, tr.Position, spr.Source, spr.Hue, tr.Rotation, spr.Origin, tr.Scale, spr.Effect, spr.Layer);
 		}
 
-		public void DrawString(QText text)
+		public void DrawString(QLabel label)
 		{
-			_batch.DrawString(text.Font, text.Text, text.Script.Transform.Position, text.Hue);
+			_batch.DrawString(label.Font, label.Text, label.Script.Transform.Position, label.Hue);
 		}
 
-		public void DrawString(QText text, Vector2 pos)
+		public void DrawString(QLabel label, Vector2 pos)
 		{
-			_batch.DrawString(text.Font, text.Text, pos, text.Hue);
+			_batch.DrawString(label.Font, label.Text, pos, label.Hue);
 		}
 
 		internal void End()
@@ -231,7 +231,7 @@ namespace QEngine.System
 					}
 					else
 					{
-						colorData[index] = Color.TransparentBlack;
+						//colorData[index] = Color.Transparent;
 					}
 				}
 			}

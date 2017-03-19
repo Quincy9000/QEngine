@@ -12,6 +12,6 @@ namespace QEngine.Interfaces
 	/// </summary>
 	public interface IQFixedUpdate
 	{
-		void FixedUpdate(QTime time);
+		void FixedUpdate(float delta);
 	}
 }

@@ -42,9 +42,11 @@ namespace QEngine.System
 				throw new DivideByZeroException();
 			var element = 0;
 			var array2D = new T[height, width];
-			for(var i = 0; i < array.Count / height; i++)
+			var w = (int)Math.Round((double)array.Count / height);
+			var h = (int)Math.Round((double)array.Count / width);
+			for (var i = 0; i < h; i++)
 			{
-				for(var j = 0; j < array.Count / width; j++)
+				for(var j = 0; j < w; j++)
 				{
 					array2D[i, j] = array[element++];
 				}

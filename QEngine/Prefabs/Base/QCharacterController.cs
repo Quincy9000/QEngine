@@ -11,9 +11,9 @@ namespace QEngine.Prefabs.Base
 
 		public abstract void Start();
 
-		public abstract void FixedUpdate(QTime time);
+		public abstract void FixedUpdate(float delta);
 
-		public abstract void Update(QTime time);
+		public abstract void Update(float delta);
 
 		public abstract void Draw(QRenderer2D render);
 	}

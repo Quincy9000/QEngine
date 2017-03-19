@@ -38,9 +38,9 @@ namespace QEngine.DemoGame
 			World.Gravity = new Vector2(0, 20);
 		}
 
-		public void FixedUpdate(QTime time)
+		public void FixedUpdate(float delta)
 		{
-			Scene.Console.WriteLine(time.FixedDelta);
+			Scene.Console.WriteLine(delta);
 			var s = 500;
 			if(QControls.KeyPressed(Keys.P))
 				QScene.TakeScreenShot(Scene);
@@ -49,13 +49,13 @@ namespace QEngine.DemoGame
 			if(QControls.KeyDown(Keys.R))
 				Parent.Scene.Window.ResetCurrentScene();
 			if(QControls.KeyDown(Keys.W))
-				Transform.Position += new Vector2(0, -1) * time.FixedDelta * s;
+				Transform.Position += new Vector2(0, -1) * delta * s;
 			if(QControls.KeyDown(Keys.A))
-				Transform.Position += new Vector2(-1, 0) * time.FixedDelta * s;
+				Transform.Position += new Vector2(-1, 0) * delta * s;
 			if(QControls.KeyDown(Keys.S))
-				Transform.Position += new Vector2(0, 1) * time.FixedDelta * s;
+				Transform.Position += new Vector2(0, 1) * delta * s;
 			if(QControls.KeyDown(Keys.D))
-				Transform.Position += new Vector2(1, 0) * time.FixedDelta * s;
+				Transform.Position += new Vector2(1, 0) * delta * s;
 		}
 
 		public void Draw(QRenderer2D render)

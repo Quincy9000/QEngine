@@ -33,24 +33,24 @@ namespace QEngine.Prefabs
 
 		public int Width { get; set; }
 		public int Height { get; set; }
-		public void SetFont(SpriteFont font) => _text.Font = font;
+		public void SetFont(SpriteFont font) => _label.Font = font;
 		public string FontName { get; private set; }
 		public double FadeStart { get; set; } = 2;
 
 		double _startFade;
 		double _fade;
-		QText _text;
+		QLabel _label;
 		LinkedList<MessageBox> Messages { get; set; }
 
 		public Color FontColor
 		{
 			get
 			{
-				return _text.Hue;
+				return _label.Hue;
 			}
 			set
 			{
-				_text.Hue = value;
+				_label.Hue = value;
 			}
 		}
 
@@ -61,14 +61,14 @@ namespace QEngine.Prefabs
 			Messages = new LinkedList<MessageBox>();
 		}
 
-		Vector2 Measure(QText text)
+		Vector2 Measure(QLabel label)
 		{
-			return text.Font.MeasureString(text.Text);
+			return label.Font.MeasureString(label.Text);
 		}
 
 		Vector2 Measure(string text)
 		{
-			return _text.Font.MeasureString(text);
+			return _label.Font.MeasureString(text);
 		}
 
 		/// <summary>
@@ -79,7 +79,7 @@ namespace QEngine.Prefabs
 		{
 			_fade = FadeStart;
 			_startFade = 0;
-			_text.Hue = Color.White;
+			_label.Hue = Color.White;
 			var measure = Measure(message);
 			if(measure.X > Width)
 			{
@@ -118,17 +118,17 @@ namespace QEngine.Prefabs
 
 		public void Start()
 		{
-			_text = new QText(GetFont(FontName), this);
+			_label = new QLabel(GetFont(FontName), this);
 			_startFade = 0;
 		}
 
-		public void Update(QTime time)
+		public void Update(float delta)
 		{
-			_startFade += time.Delta;
+			_startFade += delta;
 			if(_startFade > FadeStart)
 			{
-				_fade -= time.Delta;
-				_text.Hue = new Color((float)_fade, (float)_fade, (float)_fade, (float)_fade);
+				_fade -= delta;
+				_label.Hue = new Color((float)_fade, (float)_fade, (float)_fade, (float)_fade);
 			}
 		}
 
@@ -137,15 +137,15 @@ namespace QEngine.Prefabs
 			Vector2 temp = Transform.Position;
 //			for(int i = 0; i < Messages.Count; i++)
 //			{
-//				_text.Text = Messages[i].Text;
-//				renderer.DrawString(_text, temp);
-//				temp.Y += Messages[i].MeasureMent.Y * _text.Scale.Y;
+//				_label.Text = Messages[i].Text;
+//				renderer.DrawString(_label, temp);
+//				temp.Y += Messages[i].MeasureMent.Y * _label.Scale.Y;
 //			}
 			foreach(var m in Messages)
 			{
-				_text.Text = m.Text;
-				renderer.DrawString(_text, temp);
-				temp.Y += m.MeasureMent.Y * _text.Scale.Y;
+				_label.SetText = m.Text;
+				renderer.DrawString(_label, temp);
+				temp.Y += m.MeasureMent.Y * _label.Scale.Y;
 			}
 		}
 

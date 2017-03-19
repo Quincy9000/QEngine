@@ -247,18 +247,19 @@ namespace QEngine.System
 			SceneState = SceneStates.FixedUpdate;
 			while(accumulator >= time.FixedDelta)
 			{
-				QControls.Update();
+				//QControls.Update();
 				for(int i = 0; i < Slows.Count; i++)
-					Slows[i].FixedUpdate(time);
-				World.Step(time);
+					Slows[i].FixedUpdate(time.FixedDelta);
+				World.Step(time.FixedDelta);
 				accumulator -= time.FixedDelta;
 			}
+			//QControls.Update();
 			SceneState = SceneStates.Update;
 			for(int i = 0; i < Fasts.Count; ++i)
-				Fasts[i].Update(time);
+				Fasts[i].Update(time.Delta);
 			SceneState = SceneStates.LateUpdate;
 			for(int i = 0; i < Lates.Count; i++)
-				Lates[i].LateUpdate(time);
+				Lates[i].LateUpdate(time.Delta);
 			MainCamera.UpdateMatrix();
 		}
 

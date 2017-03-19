@@ -173,7 +173,7 @@ namespace QEngine.Prefabs
 
 		public event IncommingMessage OnIncommingMessage;
 
-		public void Update(QTime time)
+		public void Update(float delta)
 		{
 			switch(Connection)
 			{

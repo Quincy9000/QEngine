@@ -304,11 +304,11 @@ namespace QEngine.System
 		{
 			if(State != SceneStates.Load)
 				throw new QException(this, State);
-			if(!Parent.Components.ContainsKey(typeof(QText)))
+			if(!Parent.Components.ContainsKey(typeof(QLabel)))
 			{
-				var t = new QText(GetFont(nameOfFont), this)
+				var t = new QLabel(GetFont(nameOfFont), this)
 				{
-					Text = text
+					SetText = text,
 				};
 				Parent.AddComponent(t);
 			}
