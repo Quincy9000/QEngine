@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace QEngine.System
 {
 	[ImmutableObject(true)]
-	public struct QTime
+	internal struct QTime
 	{
 		public QTime(GameTime time, float fdelta)
 		{

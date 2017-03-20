@@ -370,8 +370,8 @@ namespace QEngine.System
 			if(b == null)
 				throw new QException("Body was fucking null");
 			if(world == null)
-				throw new QException("World is fucking null");
-			_world = world.World;
+				throw new QException("Core is fucking null");
+			_world = world.Core;
 			Core = b;
 			Core.SleepingAllowed = true;
 			Core.IgnoreCCD = true;
@@ -381,8 +381,8 @@ namespace QEngine.System
 		public QRigidbody(QWorld world)
 		{
 			if(world == null)
-				throw new QException("World is fucking null");
-			_world = world.World;
+				throw new QException("Core is fucking null");
+			_world = world.Core;
 			Core = null;
 			Type = typeof(QRigidbody);
 		}

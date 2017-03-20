@@ -6,7 +6,7 @@ using QEngine.System;
 
 namespace QEngine.DemoGame
 {
-	class TestScript : QBehavior, IQLoad, IQStart, IQFixedUpdate, IQDraw
+	class TestScript : QBehavior, IQLoad, IQStart, IQUpdate, IQDraw
 	{
 		QSprite sprite;
 
@@ -38,7 +38,7 @@ namespace QEngine.DemoGame
 			World.Gravity = new Vector2(0, 20);
 		}
 
-		public void FixedUpdate(float delta)
+		public void Update(float delta)
 		{
 			Scene.Console.WriteLine(delta);
 			var s = 500;

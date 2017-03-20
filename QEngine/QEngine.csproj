@@ -62,7 +62,6 @@
     <Compile Include="Interfaces\IQMessage.cs" />
     <Compile Include="Interfaces\IQStart.cs" />
     <Compile Include="Interfaces\IQUpdate.cs" />
-    <Compile Include="Interfaces\IQFixedUpdate.cs" />
     <Compile Include="Interfaces\QComponent.cs" />
     <Compile Include="Prefabs\Base\QCharacterController.cs" />
     <Compile Include="Prefabs\Base\QLoadable.cs" />

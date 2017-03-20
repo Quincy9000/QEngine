@@ -53,8 +53,7 @@ namespace QEngine.System
 
 		List<IQLoad> Loads;
 		List<IQStart> Starts;
-		List<IQFixedUpdate> Slows;
-		List<IQUpdate> Fasts;
+		List<IQUpdate> Updates;
 		List<IQLateUpdate> Lates;
 		List<IQDraw> Draws;
 		List<IQGui> Guis;
@@ -76,13 +75,9 @@ namespace QEngine.System
 			{
 				Starts.Add(start);
 			}
-			if(s is IQFixedUpdate slow)
-			{
-				Slows.Add(slow);
-			}
 			if(s is IQUpdate fast)
 			{
-				Fasts.Add(fast);
+				Updates.Add(fast);
 			}
 			if(s is IQLateUpdate late)
 			{
@@ -114,13 +109,9 @@ namespace QEngine.System
 			{
 				Starts.Remove(start);
 			}
-			if(s is IQFixedUpdate slow)
-			{
-				Slows.Remove(slow);
-			}
 			if(s is IQUpdate fast)
 			{
-				Fasts.Remove(fast);
+				Updates.Remove(fast);
 			}
 			if(s is IQLateUpdate late)
 			{
@@ -220,8 +211,7 @@ namespace QEngine.System
 			Nodes = new List<QNode>(100);
 			Loads = new List<IQLoad>();
 			Starts = new List<IQStart>();
-			Slows = new List<IQFixedUpdate>();
-			Fasts = new List<IQUpdate>();
+			Updates = new List<IQUpdate>();
 			Lates = new List<IQLateUpdate>();
 			Draws = new List<IQDraw>();
 			Guis = new List<IQGui>();
@@ -244,22 +234,18 @@ namespace QEngine.System
 			accumulator += time.Delta;
 			if(accumulator > 0.25f)
 				accumulator = 0.25f;
-			SceneState = SceneStates.FixedUpdate;
 			while(accumulator >= time.FixedDelta)
 			{
-				//QControls.Update();
-				for(int i = 0; i < Slows.Count; i++)
-					Slows[i].FixedUpdate(time.FixedDelta);
+				QControls.Update();
+				SceneState = SceneStates.Update;
+				for(int i = 0; i < Updates.Count; i++)
+					Updates[i].Update(time.FixedDelta);
+				SceneState = SceneStates.LateUpdate;
+				for(int i = 0; i < Lates.Count; i++)
+					Lates[i].LateUpdate(time.FixedDelta);
 				World.Step(time.FixedDelta);
 				accumulator -= time.FixedDelta;
 			}
-			//QControls.Update();
-			SceneState = SceneStates.Update;
-			for(int i = 0; i < Fasts.Count; ++i)
-				Fasts[i].Update(time.Delta);
-			SceneState = SceneStates.LateUpdate;
-			for(int i = 0; i < Lates.Count; i++)
-				Lates[i].LateUpdate(time.Delta);
 			MainCamera.UpdateMatrix();
 		}
 
@@ -367,7 +353,7 @@ namespace QEngine.System
 //					{
 //						if (!IsRunning)
 //							break;
-//						World?.Step(time);
+//						Core?.Step(time);
 //						accum -= time;
 //					}
 //				}

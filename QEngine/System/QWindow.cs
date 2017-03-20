@@ -155,32 +155,35 @@ namespace QEngine.System
 
 		protected override void LoadContent()
 		{
-			foreach(string passedInArguments in _args)
+			if(_args != null)
 			{
-				if(passedInArguments.Contains("width:"))
+				foreach (string passedInArguments in _args)
 				{
-					if(int.TryParse(passedInArguments.Split(':')[1], out int x))
+					if (passedInArguments.Contains("width:"))
 					{
-						Width = x;
+						if (int.TryParse(passedInArguments.Split(':')[1], out int x))
+						{
+							Width = x;
+						}
 					}
-				}
-				else if(passedInArguments.Contains("height:"))
-				{
-					if(int.TryParse(passedInArguments.Split(':')[1], out int x))
+					else if (passedInArguments.Contains("height:"))
 					{
-						Height = x;
+						if (int.TryParse(passedInArguments.Split(':')[1], out int x))
+						{
+							Height = x;
+						}
 					}
-				}
-				else if(passedInArguments.Contains("vsync:"))
-				{
-					if(bool.TryParse(passedInArguments.Split(':')[1], out bool x))
+					else if (passedInArguments.Contains("vsync:"))
 					{
-						IsVerticalSync = x;
+						if (bool.TryParse(passedInArguments.Split(':')[1], out bool x))
+						{
+							IsVerticalSync = x;
+						}
 					}
 				}
 			}
 
-			FixedDeltaTime = 60f;
+			FixedDeltaTime = 120f;
 			IsVerticalSync = false;
 			IsHardwareModeSwitch = true;
 			IsMouseVisible = true;
@@ -232,6 +235,16 @@ namespace QEngine.System
 		public QWindow(string title, string rootDirectory, int width, int height, string[] args)
 		{
 			_args = args;
+			DeviceManager = new GraphicsDeviceManager(this);
+			Window.Title = title;
+			RootDirectory = rootDirectory;
+			Width = width;
+			Height = height;
+		}
+
+		public QWindow(string title, string rootDirectory, int width, int height)
+		{
+			_args = null;
 			DeviceManager = new GraphicsDeviceManager(this);
 			Window.Title = title;
 			RootDirectory = rootDirectory;

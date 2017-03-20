@@ -3,15 +3,13 @@ using QEngine.System;
 
 namespace QEngine.Prefabs.Base
 {
-	public abstract class QCharacterController : QBehavior, IQLoad, IQStart, IQFixedUpdate, IQUpdate, IQDraw
+	public abstract class QCharacterController : QBehavior, IQLoad, IQStart, IQUpdate, IQDraw
 	{
 		protected QCharacterController() : base("QCharacterController") { }
 
 		public abstract void Load();
 
 		public abstract void Start();
-
-		public abstract void FixedUpdate(float delta);
 
 		public abstract void Update(float delta);
 

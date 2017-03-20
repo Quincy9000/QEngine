@@ -6,59 +6,59 @@ namespace QEngine.System
 {
 	public class QWorld
 	{
-		public World World { get; }
+		public World Core { get; }
 
 		internal bool IsHostOfConnection { get; set; } = true;
 
-		public QWorld(Vector2 gravity)
+		internal QWorld(Vector2 gravity)
 		{
-			World = new World(gravity);
+			Core = new World(gravity);
 		}
 
-		public void Clear() => World.Clear();
+		public void Clear() => Core.Clear();
 
 		public Vector2 Gravity
 		{
 			get
 			{
-				return World.Gravity;
+				return Core.Gravity;
 			}
 			set
 			{
-				World.Gravity = value;
+				Core.Gravity = value;
 			}
 		}
 
-		public void Step(QTime time)
+		internal void Step(QTime time)
 		{
-			World.Step(time.FixedDelta);
+			Core.Step(time.FixedDelta);
 		}
 
-		public void Step(float time)
+		internal void Step(float time)
 		{
-			World.Step(time);
+			Core.Step(time);
 		}
 
 		public void ClearCollisionEvents()
 		{
-			World.ContactManager.OnBroadphaseCollision = null;
+			Core.ContactManager.OnBroadphaseCollision = null;
 		}
 
 		public event BroadphaseDelegate OnBroadPhaseCollision
 		{
 			add
 			{
-				World.ContactManager.OnBroadphaseCollision += value;
+				Core.ContactManager.OnBroadphaseCollision += value;
 			}
 			remove
 			{
-				World.ContactManager.OnBroadphaseCollision -= value;
+				Core.ContactManager.OnBroadphaseCollision -= value;
 			}
 		}
 
 		public void RemoveBody(QRigidbody rigidBody)
 		{
-			World.RemoveBody(rigidBody.Core);
+			Core.RemoveBody(rigidBody.Core);
 			rigidBody.Destroy();
 		}
 	}

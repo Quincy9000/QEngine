@@ -26,14 +26,14 @@ namespace QEngine.System
 		{
 			_currentMouseState = Mouse.GetState();
 			_currentKeyboardState = Keyboard.GetState();
-			Task.Run(() =>
-			{
-				while(true)
-				{
-					Update();
-					Thread.Sleep(TimeSpan.FromSeconds(1 / 120.0));
-				}
-			});
+//			Task.Run(() =>
+//			{
+//				while(true)
+//				{
+//					Update();
+//					Thread.Sleep(TimeSpan.FromSeconds(1 / 120.0));
+//				}
+//			});
 		}
 
 		public static void Flush()
