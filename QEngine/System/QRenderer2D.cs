@@ -93,6 +93,11 @@ namespace QEngine.System
 			_batch.Draw(t, tr.Position, spr.Source, spr.Hue, tr.Rotation, spr.Origin, tr.Scale, spr.Effect, spr.Layer);
 		}
 
+		public void Draw(Texture2D t, Vector2 pos, Color color)
+		{
+			_batch.Draw(t, pos, color);
+		}
+
 		public void Draw(QSprite spr, QTransform2D tr)
 		{
 			if(MegaTexture != null && !MegaTexture.Texture.IsDisposed)

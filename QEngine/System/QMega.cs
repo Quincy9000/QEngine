@@ -43,7 +43,7 @@ namespace QEngine.System
 
 			foreach(var t in textures)
 			{
-				render._batch.Draw(t.Value, pos, Color.White);
+				render.Draw(t.Value, pos, Color.White);
 				rects.Add(t.Key, new Rectangle(pos.ToPoint(), t.Value.Bounds.Size));
 				pos.X += t.Value.Width + 1;
 			}

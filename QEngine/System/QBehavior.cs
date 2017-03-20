@@ -296,7 +296,8 @@ namespace QEngine.System
 				throw new QException(this, State);
 			if(!Parent.Components.ContainsKey(typeof(QSprite)))
 			{
-				Parent.AddComponent(QSprite.Sprite());
+				sprite = QSprite.Sprite();
+				Parent.AddComponent(sprite);
 			}
 		}
 
@@ -331,6 +332,14 @@ namespace QEngine.System
 		}
 
 		#endregion
+
+		public void Draw(QRenderer2D render)
+		{
+			if(sprite != null)
+			{
+				render.Draw(sprite, Transform);
+			}
+		}
 
 		protected QBehavior(string name)
 		{
