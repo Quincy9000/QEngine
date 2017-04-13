@@ -13,7 +13,7 @@ namespace QEngine
 		[STAThread]
 		static void Main(string[] args)
 		{
-			using(var q = new QWindow("QEngine", "Content/", 1280, 600, args))
+			using(var q = new QWindow("QEngine", "Content/", 1280, 720, args))
 			{
 				//q.IsFullScreen = true;
 				q.Run(new DemoLevel());
