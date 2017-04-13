@@ -31,10 +31,5 @@ namespace QEngine.DemoGame
 			body.BodyType = BodyType.Static;
 			Transform.Position = new Vector2(0, 100);
 		}
-
-		public override void Draw(QRenderer2D render)
-		{
-			render.Draw(sprite, Transform);
-		}
 	}
 }

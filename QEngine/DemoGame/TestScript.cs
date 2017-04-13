@@ -40,7 +40,7 @@ namespace QEngine.DemoGame
 
 		public void Update(float delta)
 		{
-			Scene.Console.WriteLine(delta);
+			Console.WriteLine($"Delta: " + DebugSettings.Fps + " FixedDelta: " + 1 / Window.FixedDeltaTime);
 			var s = 500;
 			if(QControls.KeyPressed(Keys.P))
 				QScene.TakeScreenShot(Scene);
@@ -56,11 +56,6 @@ namespace QEngine.DemoGame
 				Transform.Position += new Vector2(0, 1) * delta * s;
 			if(QControls.KeyDown(Keys.D))
 				Transform.Position += new Vector2(1, 0) * delta * s;
-		}
-
-		public void Draw(QRenderer2D render)
-		{
-			render.Draw(sprite, Transform);
 		}
 	}
 }

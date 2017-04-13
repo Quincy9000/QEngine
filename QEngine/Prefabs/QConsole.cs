@@ -61,6 +61,14 @@ namespace QEngine.Prefabs
 			Messages = new LinkedList<MessageBox>();
 		}
 
+		public QConsole(int width, int height, string fontName) : base("QConsole")
+		{
+			Width = width;
+			Height = height;
+			FontName = fontName;
+			Messages = new LinkedList<MessageBox>();
+		}
+
 		Vector2 Measure(QLabel label)
 		{
 			return label.Font.MeasureString(label.Text);
@@ -112,7 +120,8 @@ namespace QEngine.Prefabs
 		{
 			Clear();
 			//loads default font, but you can change it
-			FontName = "Arial";
+			if(string.IsNullOrEmpty(FontName))
+				FontName = "Arial";
 			LoadFont("Fonts/" + FontName);
 		}
 

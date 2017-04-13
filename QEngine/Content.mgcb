@@ -59,10 +59,10 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/data-unifon.spritefont
 
-#begin Content/Fonts/Arial.spritefont
+#begin Content/Fonts/arial.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Content/Fonts/Arial.spritefont
+/build:Content/Fonts/arial.spritefont
 

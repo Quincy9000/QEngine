@@ -220,7 +220,7 @@ namespace QEngine.System
 			Instantiate(Network = new QNetwork(ConnectionType.Wait));
 			Instantiate(MainCamera = new QCamera());
 			Instantiate(Debug = new QDebug());
-			Instantiate(Console = new QConsole(100, 10));
+			Instantiate(Console = new QConsole(100, 10, "Arial"));
 			OnLoad();
 			CreateFromQueue();
 		}
@@ -232,6 +232,7 @@ namespace QEngine.System
 			CreateFromQueue();
 			DestroyFromQueue();
 			accumulator += time.Delta;
+			Debug.Update(time.Delta);
 			if(accumulator > 0.25f)
 				accumulator = 0.25f;
 			while(accumulator >= time.FixedDelta)

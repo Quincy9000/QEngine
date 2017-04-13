@@ -7,10 +7,14 @@ namespace QEngine.Prefabs.Base
 	{
 		protected QStaticDrawable() : base("QStaticDrawable") { }
 
-		public abstract void Load();
+		public virtual void Load()
+		{
+			
+		}
 
-		public abstract void Start();
-
-		public abstract void Draw(QRenderer2D render);
+		public virtual void Start()
+		{
+			
+		}
 	}
 }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace QEngine.System
 {
-	public sealed class QWindow : Game 
+	public sealed class QWindow : Game
 	{
 		QScene _currentScene;
 
@@ -14,11 +14,11 @@ namespace QEngine.System
 
 		internal QRenderer3D _modelRenderer;
 
-		public readonly GraphicsDeviceManager DeviceManager;
+		public GraphicsDeviceManager DeviceManager;
 
 		public Dictionary<string, QScene> Scenes { get; set; }
 
-		public string RootDirectory { get; }
+		public string RootDirectory { get; private set; }
 
 		float fixedDelta;
 
@@ -29,10 +29,7 @@ namespace QEngine.System
 		/// </summary>
 		public float FixedDeltaTime
 		{
-			get
-			{
-				return fixedDelta;
-			}
+			get { return fixedDelta; }
 			set
 			{
 				if(value > 0)
@@ -42,10 +39,7 @@ namespace QEngine.System
 
 		public bool IsVerticalSync
 		{
-			get
-			{
-				return DeviceManager.SynchronizeWithVerticalRetrace;
-			}
+			get { return DeviceManager.SynchronizeWithVerticalRetrace; }
 			set
 			{
 				DeviceManager.SynchronizeWithVerticalRetrace = value;
@@ -55,10 +49,7 @@ namespace QEngine.System
 
 		public bool IsFullScreen
 		{
-			get
-			{
-				return DeviceManager.IsFullScreen;
-			}
+			get { return DeviceManager.IsFullScreen; }
 			set
 			{
 				DeviceManager.IsFullScreen = value;
@@ -68,10 +59,7 @@ namespace QEngine.System
 
 		public int Width
 		{
-			get
-			{
-				return DeviceManager.PreferredBackBufferWidth;
-			}
+			get { return DeviceManager.PreferredBackBufferWidth; }
 			set
 			{
 				DeviceManager.PreferredBackBufferWidth = value;
@@ -81,10 +69,7 @@ namespace QEngine.System
 
 		public int Height
 		{
-			get
-			{
-				return DeviceManager.PreferredBackBufferHeight;
-			}
+			get { return DeviceManager.PreferredBackBufferHeight; }
 			set
 			{
 				DeviceManager.PreferredBackBufferHeight = value;
@@ -94,10 +79,7 @@ namespace QEngine.System
 
 		public bool IsHardwareModeSwitch
 		{
-			get
-			{
-				return DeviceManager.HardwareModeSwitch;
-			}
+			get { return DeviceManager.HardwareModeSwitch; }
 			set
 			{
 				DeviceManager.HardwareModeSwitch = value;
@@ -107,14 +89,8 @@ namespace QEngine.System
 
 		public string Title
 		{
-			get
-			{
-				return Window.Title;
-			}
-			set
-			{
-				Window.Title = value;
-			}
+			get { return Window.Title; }
+			set { Window.Title = value; }
 		}
 
 		/// <summary>
@@ -157,33 +133,38 @@ namespace QEngine.System
 		{
 			if(_args != null)
 			{
-				foreach (string passedInArguments in _args)
+				foreach(string passedInArguments in _args)
 				{
-					if (passedInArguments.Contains("width:"))
+					if(passedInArguments.Contains("width:"))
 					{
-						if (int.TryParse(passedInArguments.Split(':')[1], out int x))
+						if(int.TryParse(passedInArguments.Split(':')[1], out int x))
 						{
 							Width = x;
 						}
 					}
-					else if (passedInArguments.Contains("height:"))
+					else if(passedInArguments.Contains("height:"))
 					{
-						if (int.TryParse(passedInArguments.Split(':')[1], out int x))
+						if(int.TryParse(passedInArguments.Split(':')[1], out int x))
 						{
 							Height = x;
 						}
 					}
-					else if (passedInArguments.Contains("vsync:"))
+					else if(passedInArguments.Contains("vsync:"))
 					{
-						if (bool.TryParse(passedInArguments.Split(':')[1], out bool x))
+						if(bool.TryParse(passedInArguments.Split(':')[1], out bool x))
 						{
 							IsVerticalSync = x;
 						}
 					}
+					else if(passedInArguments.Contains("pipe:"))
+					{
+						var split = passedInArguments.Split(':')[1];
+						RootDirectory = split;
+					}
 				}
 			}
 
-			FixedDeltaTime = 120f;
+			FixedDeltaTime = 60f;
 			IsVerticalSync = false;
 			IsHardwareModeSwitch = true;
 			IsMouseVisible = true;

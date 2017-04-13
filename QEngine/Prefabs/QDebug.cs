@@ -8,7 +8,7 @@ namespace QEngine.Prefabs
 	/// <summary>
 	/// Debuger that displays fps
 	/// </summary>
-	public sealed class QDebug : QBehavior, IQLoad, IQUpdate
+	public sealed class QDebug : QBehavior, IQLoad
 	{
 		QFrameCounter fps;
 
